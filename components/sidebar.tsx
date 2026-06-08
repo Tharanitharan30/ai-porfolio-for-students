@@ -22,17 +22,17 @@ import { Button } from '@/components/ui/button'
 
 const sidebarItems = [
   { icon: Grid, label: 'Dashboard', href: '/dashboard' },
-  { icon: BookOpen, label: 'My Portfolios', href: '/portfolios' },
-  { icon: Briefcase, label: 'Projects', href: '/projects' },
-  { icon: Star, label: 'Skills', href: '/skills' },
-  { icon: Award, label: 'Certifications', href: '/certifications' },
-  { icon: Users, label: 'Experience', href: '/experience' },
-  { icon: FileText, label: 'Resume Builder', href: '/resume-builder' },
-  { icon: Sparkles, label: 'AI Assistant', href: '/ai-assistant' },
-  { icon: BookOpen, label: 'Templates', href: '/templates' },
-  { icon: BarChart3, label: 'Analytics', href: '/analytics' },
-  { icon: FileText, label: 'Export Center', href: '/export-center' },
-  { icon: Settings, label: 'Settings', href: '/settings' },
+  { icon: BookOpen, label: 'My Portfolios', href: '/dashboard/portfolios' },
+  { icon: Briefcase, label: 'Projects', href: '/dashboard/projects' },
+  { icon: Star, label: 'Skills', href: '/dashboard/skills' },
+  { icon: Award, label: 'Certifications', href: '/dashboard/certifications' },
+  { icon: Users, label: 'Experience', href: '/dashboard/experience' },
+  { icon: FileText, label: 'Resume Builder', href: '/dashboard/resume-builder' },
+  { icon: Sparkles, label: 'AI Assistant', href: '/dashboard/ai-assistant' },
+  { icon: BookOpen, label: 'Templates', href: '/dashboard/templates' },
+  { icon: BarChart3, label: 'Analytics', href: '/dashboard/analytics' },
+  { icon: FileText, label: 'Export Center', href: '/dashboard/export-center' },
+  { icon: Settings, label: 'Settings', href: '/dashboard/settings' },
 ]
 
 export function Sidebar() {
@@ -101,10 +101,10 @@ export function Sidebar() {
         {/* Admin section */}
         <div className="border-t border-sidebar-border pt-4 mt-4">
           <Link
-            href="/admin"
+            href="/dashboard/admin"
             className={cn(
               'flex items-center gap-3 px-4 py-2 rounded-lg transition-colors text-sm',
-              pathname === '/admin'
+              pathname === '/dashboard/admin'
                 ? 'bg-sidebar-primary text-sidebar-primary-foreground'
                 : 'text-sidebar-foreground hover:bg-sidebar-accent'
             )}

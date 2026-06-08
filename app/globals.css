@@ -128,3 +128,23 @@
     @apply font-sans;
   }
 }
+
+@layer components {
+  /* Box and pad any grid inside the dashboard content area */
+  .dashboard-content .grid {
+    @apply bg-card border border-border rounded-lg p-4 gap-4;
+  }
+
+  /* Helper card class for explicit use */
+  .dashboard-content .card {
+    @apply bg-card border border-border rounded-lg p-4;
+  }
+
+  /* Ensure child blocks fill available width and align to start */
+  .dashboard-content > * {
+    @apply w-full;
+  }
+  .dashboard-content {
+    @apply place-items-start;
+  }
+}
