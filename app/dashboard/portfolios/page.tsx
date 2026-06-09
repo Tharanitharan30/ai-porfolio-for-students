@@ -1,9 +1,11 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { Plus, Edit, Trash2, Eye, Share2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { PageHeader } from '@/components/page-header'
 
 const portfolios = [
   {
@@ -37,22 +39,23 @@ const portfolios = [
 ]
 
 export default function PortfoliosPage() {
+  const router = useRouter()
+
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">My Portfolios</h1>
-          <p className="text-muted-foreground mt-2">Manage and create your portfolio websites</p>
-        </div>
-        <Button className="bg-primary hover:bg-primary/90 gap-2">
+      <PageHeader
+        title="My Portfolios"
+        description="Manage and create your portfolio websites"
+      >
+        <Button type="button" className="gap-2" onClick={() => router.push('/dashboard/templates')}>
           <Plus className="h-4 w-4" />
           New Portfolio
         </Button>
-      </div>
+      </PageHeader>
 
       <div className="grid gap-4">
         {portfolios.map((portfolio) => (
-          <Card key={portfolio.id} className="border-border/50 hover:border-primary/50 transition-all">
+          <Card key={portfolio.id} className="interactive-card border-border/50">
             <CardContent className="pt-6">
               <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                 <div className="flex-1 min-w-0">

@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
+import { InputWithIcon } from '@/components/ui/input-with-icon'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Lock } from 'lucide-react'
@@ -35,84 +35,67 @@ export default function ResetPasswordPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-secondary flex items-center justify-center p-4">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl"></div>
-      </div>
-
-      <Card className="w-full max-w-md shadow-lg relative z-10 border-border/50">
-        <CardHeader className="space-y-1">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-8 h-8 bg-primary text-primary-foreground rounded-lg flex items-center justify-center font-bold">
-              G
-            </div>
-            <span className="text-lg font-bold">GenFolio</span>
+    <Card className="w-full border-border/50 shadow-xl hover:shadow-xl">
+      <CardHeader className="space-y-1 pb-2">
+        <div className="mb-2 flex items-center gap-2">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary font-bold text-primary-foreground">
+            G
           </div>
-          <CardTitle>Create New Password</CardTitle>
-          <CardDescription>Enter a new password for your account</CardDescription>
-        </CardHeader>
+          <span className="text-lg font-bold">GenFolio</span>
+        </div>
+        <CardTitle>Create New Password</CardTitle>
+        <CardDescription>Enter a new password for your account</CardDescription>
+      </CardHeader>
 
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="password">New Password</Label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="Create a strong password"
-                  className="pl-10"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
-              {password && (
-                <div className="flex items-center gap-2 mt-2">
-                  <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
-                    <div
-                      className={`h-full transition-all ${pwStrength.color}`}
-                      style={{ width: `${(pwStrength.strength / 4) * 100}%` }}
-                    ></div>
-                  </div>
-                  <span className="text-xs text-muted-foreground">{pwStrength.label}</span>
+      <CardContent>
+        <form onSubmit={handleSubmit} className="form-fields">
+          <div className="form-field">
+            <Label htmlFor="password">New Password</Label>
+            <InputWithIcon
+              id="password"
+              icon={Lock}
+              type="password"
+              placeholder="Create a strong password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            {password && (
+              <div className="flex items-center gap-2 pt-1">
+                <div className="h-2 flex-1 overflow-hidden rounded-full bg-muted">
+                  <div
+                    className={`h-full transition-all ${pwStrength.color}`}
+                    style={{ width: `${(pwStrength.strength / 4) * 100}%` }}
+                  />
                 </div>
-              )}
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="confirm">Confirm Password</Label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input
-                  id="confirm"
-                  type="password"
-                  placeholder="Confirm your password"
-                  className="pl-10"
-                  required
-                />
+                <span className="shrink-0 text-xs text-muted-foreground">{pwStrength.label}</span>
               </div>
-            </div>
+            )}
+          </div>
 
-            <Button
-              type="submit"
-              className="w-full bg-primary hover:bg-primary/90"
-              disabled={isLoading}
-            >
-              {isLoading ? 'Resetting...' : 'Reset Password'}
-            </Button>
+          <div className="form-field">
+            <Label htmlFor="confirm">Confirm Password</Label>
+            <InputWithIcon
+              id="confirm"
+              icon={Lock}
+              type="password"
+              placeholder="Confirm your password"
+              required
+            />
+          </div>
 
-            <Link
-              href="/auth/login"
-              className="block text-center text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Back to login
-            </Link>
-          </form>
-        </CardContent>
-      </Card>
-    </div>
+          <Button type="submit" className="h-11 w-full" disabled={isLoading}>
+            {isLoading ? 'Resetting...' : 'Reset Password'}
+          </Button>
+
+          <Link
+            href="/auth/login"
+            className="block text-center text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            Back to login
+          </Link>
+        </form>
+      </CardContent>
+    </Card>
   )
 }

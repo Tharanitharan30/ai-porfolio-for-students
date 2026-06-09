@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Textarea } from '@/components/ui/textarea'
+import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
 
 export default function AIAssistantPage() {
@@ -34,12 +35,12 @@ export default function AIAssistantPage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <div className="flex items-center gap-2 mb-2">
+      <div className="animate-in fade-in slide-in-from-bottom-2 duration-500 fill-mode-both motion-reduce:animate-none">
+        <div className="flex items-center gap-2 mb-1.5">
           <Sparkles className="h-5 w-5 text-primary" />
-          <h1 className="text-3xl font-bold tracking-tight">AI Assistant</h1>
+          <h1 className="page-title">AI Assistant</h1>
         </div>
-        <p className="text-muted-foreground">Use AI to generate and improve your portfolio content</p>
+        <p className="page-description">Use AI to generate and improve your portfolio content</p>
       </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
@@ -60,10 +61,11 @@ export default function AIAssistantPage() {
                   <CardTitle>Input</CardTitle>
                   <CardDescription>Provide details for AI to generate content</CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium">Details</label>
+                <CardContent className="form-fields">
+                  <div className="form-field">
+                    <Label htmlFor="ai-details">Details</Label>
                     <Textarea
+                      id="ai-details"
                       placeholder="Enter your information, key points, or content to improve..."
                       className="min-h-64 resize-none"
                       value={input}
@@ -71,7 +73,7 @@ export default function AIAssistantPage() {
                     />
                   </div>
                   <Button
-                    className="w-full bg-primary hover:bg-primary/90 gap-2"
+                    className="w-full h-11 gap-2"
                     onClick={handleGenerate}
                     disabled={!input || isGenerating}
                   >

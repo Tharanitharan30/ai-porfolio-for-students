@@ -9,16 +9,23 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Textarea } from '@/components/ui/textarea'
+import { PageHeader } from '@/components/page-header'
 
 export default function SettingsPage() {
   const [isDarkMode, setIsDarkMode] = useState(false)
+  const [saved, setSaved] = useState(false)
+
+  const handleSave = () => {
+    setSaved(true)
+    setTimeout(() => setSaved(false), 2000)
+  }
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Settings</h1>
-        <p className="text-muted-foreground mt-2">Manage your account and preferences</p>
-      </div>
+      <PageHeader
+        title="Settings"
+        description="Manage your account and preferences"
+      />
 
       <Tabs defaultValue="account" className="w-full">
         <TabsList className="grid w-full max-w-2xl grid-cols-4">
@@ -35,45 +42,45 @@ export default function SettingsPage() {
               <CardTitle>Personal Information</CardTitle>
               <CardDescription>Update your profile information</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="space-y-2">
+            <CardContent className="form-fields">
+              <div className="grid md:grid-cols-2 gap-5">
+                <div className="form-field">
                   <Label htmlFor="firstName">First Name</Label>
                   <Input id="firstName" defaultValue="John" />
                 </div>
-                <div className="space-y-2">
+                <div className="form-field">
                   <Label htmlFor="lastName">Last Name</Label>
                   <Input id="lastName" defaultValue="Doe" />
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="email" className="flex items-center gap-2">
+              <div className="form-field">
+                <Label htmlFor="email">
                   <Mail className="h-4 w-4" />
                   Email Address
                 </Label>
                 <Input id="email" type="email" defaultValue="john@example.com" />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="phone" className="flex items-center gap-2">
+              <div className="form-field">
+                <Label htmlFor="phone">
                   <Phone className="h-4 w-4" />
                   Phone Number
                 </Label>
                 <Input id="phone" defaultValue="+1 (555) 123-4567" />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="location" className="flex items-center gap-2">
+              <div className="form-field">
+                <Label htmlFor="location">
                   <MapPin className="h-4 w-4" />
                   Location
                 </Label>
                 <Input id="location" defaultValue="San Francisco, CA" />
               </div>
 
-              <Button className="bg-primary hover:bg-primary/90 gap-2">
+              <Button type="button" className="gap-2" onClick={handleSave}>
                 <Save className="h-4 w-4" />
-                Save Changes
+                {saved ? 'Saved!' : 'Save Changes'}
               </Button>
             </CardContent>
           </Card>
@@ -83,20 +90,24 @@ export default function SettingsPage() {
               <CardTitle>Change Password</CardTitle>
               <CardDescription>Update your password regularly for security</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
+            <CardContent className="form-fields">
+              <div className="form-field">
                 <Label htmlFor="currentPassword">Current Password</Label>
                 <Input id="currentPassword" type="password" />
               </div>
-              <div className="space-y-2">
+              <div className="form-field">
                 <Label htmlFor="newPassword">New Password</Label>
                 <Input id="newPassword" type="password" />
               </div>
-              <div className="space-y-2">
+              <div className="form-field">
                 <Label htmlFor="confirmPassword">Confirm Password</Label>
                 <Input id="confirmPassword" type="password" />
               </div>
-              <Button className="bg-primary hover:bg-primary/90">Update Password</Button>
+              <div className="rounded-lg border border-border/50 bg-muted/30 p-4 flex items-center justify-end">
+                <Button type="button" onClick={handleSave}>
+                  {saved ? 'Password Updated!' : 'Update Password'}
+                </Button>
+              </div>
             </CardContent>
           </Card>
         </TabsContent>

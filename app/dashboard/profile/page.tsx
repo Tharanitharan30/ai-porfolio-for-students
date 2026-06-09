@@ -6,15 +6,16 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
+import { PageHeader } from '@/components/page-header'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 export default function ProfilePage() {
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Your Profile</h1>
-        <p className="text-muted-foreground mt-2">Manage your personal information and visibility</p>
-      </div>
+      <PageHeader
+        title="Your Profile"
+        description="Manage your personal information and visibility"
+      />
 
       <div className="grid lg:grid-cols-3 gap-6">
         {/* Profile Card */}
@@ -59,33 +60,33 @@ export default function ProfilePage() {
             <CardHeader>
               <CardTitle>Personal Information</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="space-y-2">
+            <CardContent className="form-fields">
+              <div className="grid md:grid-cols-2 gap-5">
+                <div className="form-field">
                   <Label htmlFor="firstName">First Name</Label>
                   <Input id="firstName" defaultValue="John" />
                 </div>
-                <div className="space-y-2">
+                <div className="form-field">
                   <Label htmlFor="lastName">Last Name</Label>
                   <Input id="lastName" defaultValue="Doe" />
                 </div>
               </div>
 
-              <div className="space-y-2">
+              <div className="form-field">
                 <Label htmlFor="title">Professional Title</Label>
                 <Input id="title" defaultValue="Full Stack Developer" />
               </div>
 
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="email" className="flex items-center gap-2">
+              <div className="grid md:grid-cols-2 gap-5">
+                <div className="form-field">
+                  <Label htmlFor="email">
                     <Mail className="h-4 w-4" />
                     Email
                   </Label>
                   <Input id="email" type="email" defaultValue="john@example.com" />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="phone" className="flex items-center gap-2">
+                <div className="form-field">
+                  <Label htmlFor="phone">
                     <Phone className="h-4 w-4" />
                     Phone
                   </Label>
@@ -93,20 +94,19 @@ export default function ProfilePage() {
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="location" className="flex items-center gap-2">
+              <div className="form-field">
+                <Label htmlFor="location">
                   <MapPin className="h-4 w-4" />
                   Location
                 </Label>
                 <Input id="location" defaultValue="San Francisco, CA" />
               </div>
 
-              <div className="space-y-2">
+              <div className="form-field">
                 <Label htmlFor="bio">Bio</Label>
                 <Textarea
                   id="bio"
                   defaultValue="Passionate full-stack developer with 5+ years of experience building scalable web applications..."
-                  className="min-h-24"
                 />
               </div>
             </CardContent>
@@ -116,29 +116,29 @@ export default function ProfilePage() {
             <CardHeader>
               <CardTitle>Academic Information</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
+            <CardContent className="form-fields">
+              <div className="form-field">
                 <Label htmlFor="college">College/University</Label>
                 <Input id="college" defaultValue="University of California, Berkeley" />
               </div>
 
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="space-y-2">
+              <div className="grid md:grid-cols-2 gap-5">
+                <div className="form-field">
                   <Label htmlFor="degree">Degree</Label>
                   <Input id="degree" defaultValue="Bachelor's" />
                 </div>
-                <div className="space-y-2">
+                <div className="form-field">
                   <Label htmlFor="department">Department</Label>
                   <Input id="department" defaultValue="Computer Science" />
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="space-y-2">
+              <div className="grid md:grid-cols-2 gap-5">
+                <div className="form-field">
                   <Label htmlFor="cgpa">CGPA</Label>
                   <Input id="cgpa" defaultValue="3.8" />
                 </div>
-                <div className="space-y-2">
+                <div className="form-field">
                   <Label htmlFor="graduation">Graduation Year</Label>
                   <Input id="graduation" defaultValue="2019" />
                 </div>
@@ -150,32 +150,32 @@ export default function ProfilePage() {
             <CardHeader>
               <CardTitle>Social Links</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="linkedin" className="flex items-center gap-2">
+            <CardContent className="form-fields">
+              <div className="form-field">
+                <Label htmlFor="linkedin">
                   <Briefcase className="h-4 w-4" />
                   LinkedIn
                 </Label>
                 <Input id="linkedin" defaultValue="https://linkedin.com/in/johndoe" placeholder="https://linkedin.com/in/..." />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="github" className="flex items-center gap-2">
+              <div className="form-field">
+                <Label htmlFor="github">
                   <Code2 className="h-4 w-4" />
                   GitHub
                 </Label>
                 <Input id="github" defaultValue="https://github.com/johndoe" placeholder="https://github.com/..." />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="portfolio" className="flex items-center gap-2">
+              <div className="form-field">
+                <Label htmlFor="portfolio">
                   <Globe className="h-4 w-4" />
                   Portfolio URL
                 </Label>
                 <Input id="portfolio" defaultValue="https://johndoe.com" placeholder="https://..." />
               </div>
 
-              <div className="space-y-2">
+              <div className="form-field">
                 <Label htmlFor="twitter">Twitter</Label>
                 <Input id="twitter" defaultValue="https://twitter.com/johndoe" placeholder="https://twitter.com/..." />
               </div>

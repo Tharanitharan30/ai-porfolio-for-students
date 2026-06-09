@@ -1,12 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { ArrowUpRight, ArrowDownRight, Plus } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Badge } from '@/components/ui/badge'
+import { PageHeader } from '@/components/page-header'
 
 const stats = [
   {
@@ -74,29 +75,30 @@ const suggestions = [
 ]
 
 export default function DashboardPage() {
+  const router = useRouter()
+
   return (
     <div className="space-y-8">
-      {/* Header */}
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Welcome back, John!</h1>
-        <p className="text-muted-foreground mt-2">Here&apos;s what&apos;s happening with your portfolios.</p>
-      </div>
+      <PageHeader
+        title="Welcome back, John!"
+        description="Here's what's happening with your portfolios."
+      />
 
       {/* Quick Actions */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
-        <Button className="bg-primary hover:bg-primary/90 gap-2">
+        <Button type="button" className="gap-2" onClick={() => router.push('/dashboard/portfolios')}>
           <Plus className="h-4 w-4" />
           Create Portfolio
         </Button>
-        <Button className="bg-primary hover:bg-primary/90 gap-2">
+        <Button type="button" className="gap-2" onClick={() => router.push('/dashboard/projects')}>
           <Plus className="h-4 w-4" />
           Add Project
         </Button>
-        <Button className="bg-primary hover:bg-primary/90 gap-2">
+        <Button type="button" className="gap-2" onClick={() => router.push('/dashboard/resume-builder')}>
           <Plus className="h-4 w-4" />
           Generate Resume
         </Button>
-        <Button className="bg-primary hover:bg-primary/90 gap-2">
+        <Button type="button" className="gap-2" onClick={() => router.push('/dashboard/templates')}>
           <Plus className="h-4 w-4" />
           Generate Website
         </Button>

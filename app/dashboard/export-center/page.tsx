@@ -3,6 +3,7 @@
 import { Download, Share2, FileCode, FileText } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { PageHeader } from '@/components/page-header'
 
 const exportOptions = [
   {
@@ -38,16 +39,16 @@ const exportOptions = [
 export default function ExportCenterPage() {
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Export Center</h1>
-        <p className="text-muted-foreground mt-2">Export and share your portfolio in different formats</p>
-      </div>
+      <PageHeader
+        title="Export Center"
+        description="Export and share your portfolio in different formats"
+      />
 
       <div className="grid md:grid-cols-2 gap-6">
         {exportOptions.map((option) => {
           const Icon = option.icon
           return (
-            <Card key={option.title} className="border-border/50 hover:border-primary/50 transition-all">
+            <Card key={option.title} className="interactive-card border-border/50">
               <CardHeader>
                 <div className="flex items-start justify-between">
                   <Icon className={`h-8 w-8 ${option.color}`} />

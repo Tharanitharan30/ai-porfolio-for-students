@@ -3,6 +3,7 @@
 import { Plus, ExternalLink, Trash2, Award } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { PageHeader } from '@/components/page-header'
 
 const certifications = [
   {
@@ -38,20 +39,19 @@ const certifications = [
 export default function CertificationsPage() {
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Certifications</h1>
-          <p className="text-muted-foreground mt-2">Display your credentials and achievements</p>
-        </div>
-        <Button className="bg-primary hover:bg-primary/90 gap-2">
+      <PageHeader
+        title="Certifications"
+        description="Display your credentials and achievements"
+      >
+        <Button className="gap-2">
           <Plus className="h-4 w-4" />
           Add Certification
         </Button>
-      </div>
+      </PageHeader>
 
       <div className="grid md:grid-cols-2 gap-4">
         {certifications.map((cert) => (
-          <Card key={cert.id} className="border-border/50 hover:border-primary/50 transition-all">
+          <Card key={cert.id} className="interactive-card border-border/50">
             <CardContent className="pt-6">
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-primary/10 rounded-lg flex-shrink-0">

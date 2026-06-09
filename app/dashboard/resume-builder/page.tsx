@@ -4,6 +4,7 @@ import { Download, FileText } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { PageHeader } from '@/components/page-header'
 import { Badge } from '@/components/ui/badge'
 
 const templates = [
@@ -30,10 +31,10 @@ const templates = [
 export default function ResumeBuilderPage() {
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Resume Builder</h1>
-        <p className="text-muted-foreground mt-2">Create and customize your professional resume</p>
-      </div>
+      <PageHeader
+        title="Resume Builder"
+        description="Create and customize your professional resume"
+      />
 
       <Tabs defaultValue="templates" className="w-full">
         <TabsList className="grid w-full max-w-md grid-cols-2">
@@ -46,7 +47,7 @@ export default function ResumeBuilderPage() {
             {templates.map((template) => (
               <Card
                 key={template.id}
-                className="border-border/50 hover:border-primary/50 transition-all cursor-pointer"
+                className="interactive-card border-border/50 cursor-pointer"
               >
                 <CardContent className="pt-6">
                   {/* Preview placeholder */}

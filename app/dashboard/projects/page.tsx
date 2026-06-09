@@ -1,10 +1,12 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { Plus, ExternalLink, Trash2, Edit } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
+import { PageHeader } from '@/components/page-header'
 
 const projects = [
   {
@@ -46,24 +48,25 @@ const projects = [
 ]
 
 export default function ProjectsPage() {
+  const router = useRouter()
+
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Projects</h1>
-          <p className="text-muted-foreground mt-2">Showcase your best work and achievements</p>
-        </div>
-        <Button className="bg-primary hover:bg-primary/90 gap-2">
+      <PageHeader
+        title="Projects"
+        description="Showcase your best work and achievements"
+      >
+        <Button type="button" className="gap-2" onClick={() => router.push('/dashboard/ai-assistant')}>
           <Plus className="h-4 w-4" />
           Add Project
         </Button>
-      </div>
+      </PageHeader>
 
       <Input placeholder="Search projects..." className="max-w-md" />
 
       <div className="grid gap-4">
         {projects.map((project) => (
-          <Card key={project.id} className="border-border/50 hover:border-primary/50 transition-all">
+          <Card key={project.id} className="interactive-card border-border/50">
             <CardContent className="pt-6">
               <div className="space-y-4">
                 <div className="flex items-start justify-between gap-4">

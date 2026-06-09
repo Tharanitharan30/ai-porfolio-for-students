@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
+import { InputWithIcon } from '@/components/ui/input-with-icon'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Mail, ArrowLeft } from 'lucide-react'
@@ -22,78 +22,64 @@ export default function ForgotPasswordPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-secondary flex items-center justify-center p-4">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl"></div>
-      </div>
-
-      <Card className="w-full max-w-md shadow-lg relative z-10 border-border/50">
-        <CardHeader className="space-y-1">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-8 h-8 bg-primary text-primary-foreground rounded-lg flex items-center justify-center font-bold">
-              G
-            </div>
-            <span className="text-lg font-bold">GenFolio</span>
+    <Card className="w-full border-border/50 shadow-xl hover:shadow-xl">
+      <CardHeader className="space-y-1 pb-2">
+        <div className="mb-2 flex items-center gap-2">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary font-bold text-primary-foreground">
+            G
           </div>
-          <CardTitle>Reset Password</CardTitle>
-          <CardDescription>Enter your email to receive a password reset link</CardDescription>
-        </CardHeader>
+          <span className="text-lg font-bold">GenFolio</span>
+        </div>
+        <CardTitle>Reset Password</CardTitle>
+        <CardDescription>Enter your email to receive a password reset link</CardDescription>
+      </CardHeader>
 
-        <CardContent>
-          {!submitted ? (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="email">Email Address</Label>
-                <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="you@example.com"
-                    className="pl-10"
-                    required
-                  />
-                </div>
-              </div>
-
-              <Button
-                type="submit"
-                className="w-full bg-primary hover:bg-primary/90"
-                disabled={isLoading}
-              >
-                {isLoading ? 'Sending...' : 'Send Reset Link'}
-              </Button>
-
-              <Link
-                href="/auth/login"
-                className="flex items-center justify-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <ArrowLeft className="h-4 w-4" />
-                Back to login
-              </Link>
-            </form>
-          ) : (
-            <div className="space-y-4 text-center">
-              <div className="w-12 h-12 bg-green-100 dark:bg-green-900/20 rounded-full flex items-center justify-center mx-auto">
-                <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <h3 className="font-semibold">Check your email</h3>
-              <p className="text-sm text-muted-foreground">
-                We&apos;ve sent a password reset link to your email. Please check your inbox and follow the instructions.
-              </p>
-              <Link
-                href="/auth/login"
-                className="inline-block text-sm text-primary hover:underline font-medium"
-              >
-                Back to login
-              </Link>
+      <CardContent>
+        {!submitted ? (
+          <form onSubmit={handleSubmit} className="form-fields">
+            <div className="form-field">
+              <Label htmlFor="email">Email Address</Label>
+              <InputWithIcon
+                id="email"
+                icon={Mail}
+                type="email"
+                placeholder="you@example.com"
+                required
+              />
             </div>
-          )}
-        </CardContent>
-      </Card>
-    </div>
+
+            <Button type="submit" className="h-11 w-full" disabled={isLoading}>
+              {isLoading ? 'Sending...' : 'Send Reset Link'}
+            </Button>
+
+            <Link
+              href="/auth/login"
+              className="flex items-center justify-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Back to login
+            </Link>
+          </form>
+        ) : (
+          <div className="form-fields text-center">
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/20">
+              <svg className="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h3 className="font-semibold">Check your email</h3>
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              We&apos;ve sent a password reset link to your email. Please check your inbox and follow the instructions.
+            </p>
+            <Link
+              href="/auth/login"
+              className="inline-block text-sm font-medium text-primary hover:underline"
+            >
+              Back to login
+            </Link>
+          </div>
+        )}
+      </CardContent>
+    </Card>
   )
 }

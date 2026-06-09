@@ -122,22 +122,36 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
   }
   html {
-    @apply font-sans;
+    @apply font-sans scroll-smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 }
 
 @layer components {
+  .page-title {
+    @apply text-3xl font-bold tracking-tight text-balance;
+  }
+
+  .page-description {
+    @apply text-base text-muted-foreground leading-relaxed text-pretty;
+  }
+
   /* Box and pad any grid inside the dashboard content area */
   .dashboard-content .grid {
-    @apply bg-card border border-border rounded-lg p-4 gap-4;
+    @apply bg-card border border-border/60 rounded-xl p-4 gap-4 shadow-sm;
   }
 
   /* Helper card class for explicit use */
   .dashboard-content .card {
-    @apply bg-card border border-border rounded-lg p-4;
+    @apply bg-card border border-border/60 rounded-xl p-4 shadow-sm;
   }
 
   /* Ensure child blocks fill available width and align to start */
@@ -146,5 +160,48 @@
   }
   .dashboard-content {
     @apply place-items-start;
+  }
+
+  .interactive-card {
+    @apply transition-all duration-200 ease-out hover:border-primary/40 hover:shadow-md hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0;
+  }
+
+  .form-field {
+    @apply flex w-full flex-col gap-2;
+  }
+
+  .form-fields {
+    @apply flex w-full flex-col gap-5;
+  }
+}
+
+@layer utilities {
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 0%,
+      hsl(var(--muted) / 0.6) 40%,
+      hsl(var(--muted) / 0.9) 50%,
+      hsl(var(--muted) / 0.6) 60%,
+      hsl(var(--muted)) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.8s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-shimmer {
+      animation: none;
+      background: hsl(var(--muted));
+    }
   }
 }

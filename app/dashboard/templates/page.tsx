@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { PageHeader } from '@/components/page-header'
 
 const templates = [
   {
@@ -56,10 +57,10 @@ const categories = ['All', 'Professional', 'Developer', 'Creative', 'Research']
 export default function TemplatesPage() {
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Portfolio Templates</h1>
-        <p className="text-muted-foreground mt-2">Choose from our collection of professional templates</p>
-      </div>
+      <PageHeader
+        title="Portfolio Templates"
+        description="Choose from our collection of professional templates"
+      />
 
       <Tabs defaultValue="All" className="w-full">
         <TabsList className="grid w-full max-w-2xl grid-cols-3 lg:grid-cols-5">
@@ -76,7 +77,7 @@ export default function TemplatesPage() {
               {templates
                 .filter((t) => category === 'All' || t.category === category)
                 .map((template) => (
-                  <Card key={template.id} className="border-border/50 hover:border-primary/50 transition-all overflow-hidden">
+                  <Card key={template.id} className="interactive-card border-border/50 overflow-hidden">
                     <CardContent className="p-0">
                       {/* Preview */}
                       <div className="h-40 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center text-5xl">

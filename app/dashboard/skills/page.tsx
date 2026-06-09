@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { PageHeader } from '@/components/page-header'
 
 const technicalSkills = [
   { name: 'React', proficiency: 95, category: 'Frontend' },
@@ -27,16 +28,15 @@ const softSkills = [
 export default function SkillsPage() {
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Skills</h1>
-          <p className="text-muted-foreground mt-2">Manage your technical and soft skills</p>
-        </div>
-        <Button className="bg-primary hover:bg-primary/90 gap-2">
+      <PageHeader
+        title="Skills"
+        description="Manage your technical and soft skills"
+      >
+        <Button className="gap-2">
           <Plus className="h-4 w-4" />
           Add Skill
         </Button>
-      </div>
+      </PageHeader>
 
       <Tabs defaultValue="technical" className="w-full">
         <TabsList className="grid w-full max-w-md grid-cols-2">

@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import Image from 'next/image'
 import {
   BarChart3,
   BookOpen,
@@ -68,8 +69,8 @@ export function Sidebar() {
       >
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 mb-8 mt-2 md:mt-0">
-          <div className="w-8 h-8 bg-sidebar-primary text-sidebar-primary-foreground rounded-lg flex items-center justify-center font-bold text-sm">
-            G
+          <div className="relative w-8 h-8 rounded-lg overflow-hidden shrink-0">
+            <Image src="/genfolio.jpeg" alt="GenFolio Logo" fill className="object-cover" />
           </div>
           <span className="font-bold text-lg hidden sm:inline">GenFolio</span>
         </Link>
@@ -85,10 +86,10 @@ export function Sidebar() {
                 href={item.href}
                 onClick={() => setOpen(false)}
                 className={cn(
-                  'flex items-center gap-3 px-4 py-2 rounded-lg transition-colors text-sm',
+                  'flex items-center gap-3 px-4 py-2 rounded-lg text-sm transition-all duration-200 ease-out',
                   isActive
-                    ? 'bg-sidebar-primary text-sidebar-primary-foreground'
-                    : 'text-sidebar-foreground hover:bg-sidebar-accent'
+                    ? 'bg-sidebar-primary text-sidebar-primary-foreground shadow-sm'
+                    : 'text-sidebar-foreground hover:bg-sidebar-accent hover:translate-x-0.5 motion-reduce:hover:translate-x-0'
                 )}
               >
                 <Icon className="h-4 w-4 flex-shrink-0" />
@@ -103,10 +104,10 @@ export function Sidebar() {
           <Link
             href="/dashboard/admin"
             className={cn(
-              'flex items-center gap-3 px-4 py-2 rounded-lg transition-colors text-sm',
+              'flex items-center gap-3 px-4 py-2 rounded-lg text-sm transition-all duration-200 ease-out',
               pathname === '/dashboard/admin'
-                ? 'bg-sidebar-primary text-sidebar-primary-foreground'
-                : 'text-sidebar-foreground hover:bg-sidebar-accent'
+                ? 'bg-sidebar-primary text-sidebar-primary-foreground shadow-sm'
+                : 'text-sidebar-foreground hover:bg-sidebar-accent hover:translate-x-0.5 motion-reduce:hover:translate-x-0'
             )}
           >
             <BarChart3 className="h-4 w-4 flex-shrink-0" />

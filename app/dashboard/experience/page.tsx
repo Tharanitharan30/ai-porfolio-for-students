@@ -3,6 +3,7 @@
 import { Plus, Trash2, Edit, Briefcase } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
+import { PageHeader } from '@/components/page-header'
 
 const experiences = [
   {
@@ -37,16 +38,15 @@ const experiences = [
 export default function ExperiencePage() {
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Experience</h1>
-          <p className="text-muted-foreground mt-2">Showcase your professional journey</p>
-        </div>
-        <Button className="bg-primary hover:bg-primary/90 gap-2">
+      <PageHeader
+        title="Experience"
+        description="Showcase your professional journey"
+      >
+        <Button className="gap-2">
           <Plus className="h-4 w-4" />
           Add Experience
         </Button>
-      </div>
+      </PageHeader>
 
       <div className="space-y-4">
         {experiences.map((exp, index) => (
@@ -56,7 +56,7 @@ export default function ExperiencePage() {
               <div className="absolute left-8 top-16 h-12 w-0.5 bg-border"></div>
             )}
 
-            <Card className="border-border/50 hover:border-primary/50 transition-all">
+            <Card className="interactive-card border-border/50">
               <CardContent className="pt-6">
                 <div className="flex gap-4">
                   {/* Timeline dot */}

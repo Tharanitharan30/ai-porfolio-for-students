@@ -1,7 +1,8 @@
 'use client'
 
-import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { ButtonLink } from '@/components/ui/button-link'
+import Image from 'next/image'
 import { ArrowRight, Sparkles, BarChart3, Zap } from 'lucide-react'
 
 export default function Page() {
@@ -15,24 +16,22 @@ export default function Page() {
 
       <nav className="relative z-10 flex items-center justify-between px-6 md:px-12 py-6">
         <div className="flex items-center gap-2">
-          <div className="w-10 h-10 bg-primary text-primary-foreground rounded-lg flex items-center justify-center font-bold">
-            G
+          <div className="relative w-10 h-10 rounded-lg overflow-hidden shrink-0">
+            <Image src="/genfolio.jpeg" alt="GenFolio Logo" fill className="object-cover" />
           </div>
           <span className="text-xl font-bold hidden sm:inline">GenFolio</span>
         </div>
         <div className="flex items-center gap-4">
-          <Link href="/auth/login">
-            <Button variant="ghost">Sign In</Button>
-          </Link>
-          <Link href="/auth/register">
-            <Button className="bg-primary hover:bg-primary/90">Get Started</Button>
-          </Link>
+          <ButtonLink href="/auth/login" variant="ghost">
+            Sign In
+          </ButtonLink>
+          <ButtonLink href="/auth/register">Get Started</ButtonLink>
         </div>
       </nav>
 
       <main className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 py-20">
         {/* Hero section */}
-        <div className="text-center space-y-6 mb-20">
+        <div className="text-center space-y-6 mb-20 animate-in fade-in slide-in-from-bottom-4 duration-700 fill-mode-both motion-reduce:animate-none">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
             <Sparkles className="h-4 w-4 text-primary" />
             <span className="text-sm text-primary font-medium">AI-Powered Portfolio Builder</span>
@@ -47,14 +46,12 @@ export default function Page() {
           </p>
 
           <div className="flex items-center justify-center gap-4 pt-4 flex-wrap">
-            <Link href="/auth/register">
-              <Button className="bg-primary hover:bg-primary/90 gap-2 h-12 px-8">
-                Start Free <ArrowRight className="h-4 w-4" />
-              </Button>
-            </Link>
-            <Button variant="outline" className="h-12 px-8">
+            <ButtonLink href="/auth/register" className="h-12 gap-2 px-8" size="lg">
+              Start Free <ArrowRight className="h-4 w-4" />
+            </ButtonLink>
+            <ButtonLink href="/dashboard" variant="outline" className="h-12 px-8" size="lg">
               View Demo
-            </Button>
+            </ButtonLink>
           </div>
         </div>
 
@@ -77,7 +74,7 @@ export default function Page() {
               description: 'Track who&apos;s viewing your portfolio and get actionable insights',
             },
           ].map((feature, i) => (
-            <div key={i} className="p-6 rounded-lg bg-card border border-border/50 hover:border-primary/50 transition-all">
+            <div key={i} className="interactive-card p-6 rounded-xl bg-card border border-border/50 shadow-sm">
               <feature.icon className="h-8 w-8 text-primary mb-4" />
               <h3 className="font-semibold text-lg mb-2">{feature.title}</h3>
               <p className="text-muted-foreground text-sm">{feature.description}</p>
